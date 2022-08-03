@@ -8,7 +8,7 @@ jobs:
 
 
 
-make_artifacts2:
+  make_artifacts2:
     runs-on: ubuntu-latest
     if: ${{ always() }}
     steps:
