@@ -645,11 +645,11 @@ jobs:
           echo "version=$(cat ./VERSION)" > $GITHUB_ENV
       - name: new_artifacts
         run: |
-          docker pull skoltech/speedtest-service:latest
-          docker pull skoltech/speedtest-balancer:latest
+          docker pull 125125335/speedtest-service:latest
+          docker pull 125125335/speedtest-balancer:latest
           docker pull postgres:${POSTGRES_VERSION:-14.4}
-          docker save skoltech/speedtest-service:latest
-          docker save skoltech/speedtest-balancer:latest
+          docker save 125125335/speedtest-service:latest
+          docker save 125125335/speedtest-balancer:latest
           docker save postgres:${POSTGRES_VERSION:-14.4} | gzip > postgres.tar.gz
 
 
