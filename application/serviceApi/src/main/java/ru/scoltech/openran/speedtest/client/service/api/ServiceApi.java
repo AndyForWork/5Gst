@@ -173,130 +173,6 @@ public class ServiceApi {
         return call;
     }
     /**
-     * Build call for startIperfOld
-     * @param args Iperf args used to run service iperf (optional)
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @deprecated
-     */
-    @Deprecated
-    public com.squareup.okhttp.Call startIperfOldCall(String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/start-iperf";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (args != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("args", args));
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @Deprecated
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call startIperfOldValidateBeforeCall(String args, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = startIperfOldCall(args, progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * 
-     * @param args Iperf args used to run service iperf (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
-     */
-    @Deprecated
-    public void startIperfOld(String args) throws ApiException {
-        startIperfOldWithHttpInfo(args);
-    }
-
-    /**
-     * 
-     * 
-     * @param args Iperf args used to run service iperf (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
-     */
-    @Deprecated
-    public ApiResponse<Void> startIperfOldWithHttpInfo(String args) throws ApiException {
-        com.squareup.okhttp.Call call = startIperfOldValidateBeforeCall(args, null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     *  (asynchronously)
-     * 
-     * @param args Iperf args used to run service iperf (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @deprecated
-     */
-    @Deprecated
-    public com.squareup.okhttp.Call startIperfOldAsync(String args, final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = startIperfOldValidateBeforeCall(args, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
-        return call;
-    }
-    /**
      * Build call for startSession
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
@@ -406,19 +282,17 @@ public class ServiceApi {
         return call;
     }
     /**
-     * Build call for stopIperfOld
+     * Build call for stopIperf
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @deprecated
      */
-    @Deprecated
-    public com.squareup.okhttp.Call stopIperfOldCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call stopIperfCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/stop-iperf";
+        String localVarPath = "/api/v1/iperf/stop";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -452,15 +326,14 @@ public class ServiceApi {
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
-    @Deprecated
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopIperfOldValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call stopIperfValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = stopIperfOldCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopIperfCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -469,11 +342,9 @@ public class ServiceApi {
      * 
      * 
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
      */
-    @Deprecated
-    public void stopIperfOld() throws ApiException {
-        stopIperfOldWithHttpInfo();
+    public void stopIperf() throws ApiException {
+        stopIperfWithHttpInfo();
     }
 
     /**
@@ -481,11 +352,9 @@ public class ServiceApi {
      * 
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @deprecated
      */
-    @Deprecated
-    public ApiResponse<Void> stopIperfOldWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = stopIperfOldValidateBeforeCall(null, null);
+    public ApiResponse<Void> stopIperfWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = stopIperfValidateBeforeCall(null, null);
         return apiClient.execute(call);
     }
 
@@ -495,10 +364,8 @@ public class ServiceApi {
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @deprecated
      */
-    @Deprecated
-    public com.squareup.okhttp.Call stopIperfOldAsync(final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call stopIperfAsync(final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -519,7 +386,7 @@ public class ServiceApi {
             };
         }
 
-        com.squareup.okhttp.Call call = stopIperfOldValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = stopIperfValidateBeforeCall(progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -534,7 +401,7 @@ public class ServiceApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/iperf/stop";
+        String localVarPath = "/api/v1/session/stop";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -629,115 +496,6 @@ public class ServiceApi {
         }
 
         com.squareup.okhttp.Call call = stopSessionValidateBeforeCall(progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
-        return call;
-    }
-    /**
-     * Build call for stopSession_0
-     * @param progressListener Progress listener
-     * @param progressRequestListener Progress request listener
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     */
-    public com.squareup.okhttp.Call stopSession_0Call(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/session/stop";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopSession_0ValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-
-        com.squareup.okhttp.Call call = stopSession_0Call(progressListener, progressRequestListener);
-        return call;
-
-    }
-
-    /**
-     * 
-     * 
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public void stopSession_0() throws ApiException {
-        stopSession_0WithHttpInfo();
-    }
-
-    /**
-     * 
-     * 
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Void> stopSession_0WithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = stopSession_0ValidateBeforeCall(null, null);
-        return apiClient.execute(call);
-    }
-
-    /**
-     *  (asynchronously)
-     * 
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call stopSession_0Async(final ApiCallback<Void> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = stopSession_0ValidateBeforeCall(progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
