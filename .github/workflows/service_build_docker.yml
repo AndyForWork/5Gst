@@ -1,10 +1,6 @@
 name: "[Service] Build docker image"
 
 on: 
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
   workflow_run:
     workflows: ["[Service] API service generation using swagger"]
     types:
