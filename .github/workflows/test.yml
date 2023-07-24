@@ -1,0 +1,17 @@
+name: stackoverflow-68759990-2
+
+on:
+  workflow_run:
+    workflows: ["stackoverflow-68759990-1"]
+    types:
+      - completed
+
+jobs:
+    actions-tagger:
+      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      runs-on: ubuntu-latest
+      steps: 
+        - run: |
+            echo 'second'
+            # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#:~:text=head_branch%2C%20and%20head_sha.-,workflow,-object
+            echo "${{ toJSON(github.event.workflow) }}"
