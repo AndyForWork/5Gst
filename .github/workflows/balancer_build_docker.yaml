@@ -1,10 +1,6 @@
 name: "[Balancer] Publish docker image to Docker Hub"
 
 on: 
-  push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
   workflow_run:
     workflows: ["[Balancer] API client generation using swagger"]
     types:
